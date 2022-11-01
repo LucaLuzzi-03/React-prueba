@@ -28,6 +28,11 @@ nav {
   text-align: center;
   width: 250px;
 }
+
+nav img {
+  margin-top: 25px;
+}
+
 nav ul {
   align-items: center;
   display: flex;

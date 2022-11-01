@@ -1,5 +1,5 @@
 import { lazy, LazyExoticComponent } from 'react';
-import { LazyLayout } from '../01-lazyload/layout/LazyLayout';
+// import { LazyLayout } from '../01-lazyload/layout/LazyLayout';
 import { NoLazy } from '../01-lazyload/pages/NoLazy';
 
 

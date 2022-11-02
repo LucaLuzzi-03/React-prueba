@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom';
+import { ShopingPage } from '../02-components-patterns/pages/ShoppingPage';
   
   import logo from '../assets/react.svg';
   
@@ -7,10 +8,10 @@ import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-do
       <BrowserRouter>
         <div className="main-layout">
           <nav>
-              <img src={ logo } alt="React Logo" />
+              <img src={ logo } alt="React Logo" style={{ width: '150px', marginTop: '20px' }} />
             <ul>
               <li>
-                <NavLink to="/home" className={ ({ isActive }: { isActive: boolean }) => isActive ? 'nav-active' : '' } >Home</NavLink>
+                <NavLink to="/home" className={ ({ isActive }: { isActive: boolean }) => isActive ? 'nav-active' : '' } >Shopping</NavLink>
               </li>
               <li>
                 <NavLink to="/about" className={ ({ isActive }: { isActive: boolean }) => isActive ? 'nav-active' : '' } >About</NavLink>
@@ -26,7 +27,7 @@ import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-do
           <Routes>
             <Route path="about" element={ <h1>About</h1> } />
             <Route path="users" element={ <h1>Users</h1> } />
-            <Route path="home" element={ <h1>Home</h1> } />
+            <Route path="home" element={ <ShopingPage /> } />
 
             <Route path='/*' element={ <Navigate to='/home' replace /> } />
           </Routes>

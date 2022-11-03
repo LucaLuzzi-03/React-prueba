@@ -1,62 +1,48 @@
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from '../components';
-import '../styles/custom-styles.css'
-import { Product } from '../interfaces/interfaces';
-import { useState } from 'react';
-import { useShoppingCart } from '../hooks/useShoppingCart';
-import { products } from '../data/products';
 
+import { products } from '../data/products';
+import styles from '../styles/styles.module.css'
+import '../styles/custom-styles.css'
+
+const product = products[0]
 
 
 export const ShopingPage = () => {
-
-    const { shoppingCart, onProductCountChange } = useShoppingCart({});
 
   return (
     <div>
       <h1>Shopping store</h1>
       <hr />
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >    
 
-      {
-        products.map(product => (
-          <ProductCard 
-            key={ product.id }
-            product={ product }
-            className="bg-dark text-white"
-            onChange={ onProductCountChange }
-            value={ shoppingCart[product.id]?.count || 0 }
-          >
-            <ProductImage className="custom-image" />
-            <ProductTitle title='hello world' className="text-white text-bold" />
-            <ProductButtons className="custom-buttons" />
-          </ProductCard> 
-        ) )
-      }
-      </div>
-
-      <div className='shopping-cart' >
-
+      <ProductCard 
+        key={ product.id }
+        product={ product }
+        className="bg-dark text-white"
+        initialValues={{
+          count: 0,
+          maxCount: 10
+        }}
+      >
         {
-          Object.entries( shoppingCart ).map( ([ key, product ]) => (
-            <ProductCard 
-                key={ key }
-                product={ product }
-                className="bg-dark text-white"
-                style={{ width: '100px' }}
-                value={ product.count }
-                onChange={ onProductCountChange }
-            >
-                <ProductImage className="custom-image" />
-                <ProductButtons 
-                  className='custom-buttons'
-                  style={{ display: 'flex', justifyContent: 'center' }}  
-                />
-            </ProductCard> 
+          ({ reset, increaseBy, count, isMaxCountReached }) => (
+            <>
+              <ProductImage className="custom-image" />
+              <ProductTitle title='hello world' className="text-white  text-bold" />
+              <ProductButtons className="custom-buttons" />
 
-          ) )
-        }
+              <button onClick={ reset } >Reset</button>
+              <button onClick={ () => increaseBy(-2) } >-2</button>
+              {
+                ( !isMaxCountReached && <button onClick={ () => increaseBy(+2) } >+2</button> )
+              }
+              <span>Count: { count }</span>
+            </>
+          )
+          }
+      </ProductCard> 
 
-      </div>
+
+
     </div>
   )
 }

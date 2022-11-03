@@ -25,3 +25,10 @@
 .custom-buttons div {
     border: 1px solid white;
 }
+
+
+.shopping-cart {
+    position: fixed;
+    top: 0;
+    right: 10px;
+}

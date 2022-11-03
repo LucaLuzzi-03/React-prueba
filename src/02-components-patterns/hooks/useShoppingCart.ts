@@ -12,26 +12,14 @@ export const useShoppingCart = ( initialState = {} ) => {
    
     setShoppingCart( (prevState) => {
 
-      const productInCart: ProductInCart = prevState[product.id] || { ...product, count: 0 };
+        console.log({ count })
 
-      if ( Math.max( productInCart.count + count, 0 ) > 0 ) {
-          productInCart.count += count;
-          return {
-            ...prevState,
-            [product.id]: productInCart
-          }
+      if (!count) {
+        delete prevState[product.id];
+        return { ...prevState };
+      } else {
+        return { ...prevState, [product.id]: { count, ...product } };
       }
-
-      // Delete the product
-      const { [product.id]: toDelete, ...rest } = prevState;
-      return {...rest};
-
-      // if (!count) {
-      //   delete prevState[product.id];
-      //   return { ...prevState };
-      // } else {
-      //   return { ...prevState, [product.id]: { count, ...product } };
-      // }
     });
   }
 
